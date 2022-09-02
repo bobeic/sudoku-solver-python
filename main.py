@@ -146,148 +146,46 @@ class Grid:
 
 
 def main():
-    # useSolver = input("Would you like to use the sudoku solver? y/n ")
-    # while useSolver not in ["y", "n"]:
-    #     useSolver = input("That is not a valid input. Press y to use and n to quit: ")
-    # if useSolver == "n":
-    #     quit()
-    # else:
-    #     sudoku_input = []
-    #     row_names = [
-    #         "First",
-    #         "Second",
-    #         "Third",
-    #         "Fourth",
-    #         "Fifth",
-    #         "Sixth",
-    #         "Seventh",
-    #         "Eighth",
-    #         "Ninth",
-    #     ]
-    #     print(
-    #         "Please enter your sudoku, use a 0 to indicate an empty square and leave a space between digits"
-    #     )
+    useSolver = input("Would you like to use the sudoku solver? y/n ")
+    while useSolver not in ["y", "n"]:
+        useSolver = input("That is not a valid input. Press y to use and n to quit: ")
+    if useSolver == "n":
+        quit()
+    else:
+        sudoku_input = []
+        row_names = [
+            "First",
+            "Second",
+            "Third",
+            "Fourth",
+            "Fifth",
+            "Sixth",
+            "Seventh",
+            "Eighth",
+            "Ninth",
+        ]
+        print(
+            "Please enter your sudoku, use a 0 to indicate an empty square and leave a space between digits"
+        )
 
-    #     for row_name in row_names:
-    #         row_input = input(f"{row_name} Row: ")
-    #         row_list = list(map(int, row_input.split(" ")))
+        for row_name in row_names:
+            row_input = input(f"{row_name} Row: ")
+            row_list = list(map(int, row_input.split(" ")))
 
-    #         while len(row_list) != 9:
-    #             row_input = input(
-    #                 f"Incorrect number of values given. Please try again.\n{row_name} Row: "
-    #             )
-    #             row_list = list(map(int, row_input.split(" ")))
+            while len(row_list) != 9:
+                row_input = input(
+                    f"Incorrect number of values given. Please try again.\n{row_name} Row: "
+                )
+                row_list = list(map(int, row_input.split(" ")))
 
-    #         while not set(row_list).issubset([x for x in range(10)]):
-    #             row_input = input(
-    #                 f"One or more values was not a digit from 0 to 9. Please try again.\n{row_name} Row: "
-    #             )
-    #             row_list = list(map(int, row_input.split(" ")))
+            while not set(row_list).issubset([x for x in range(10)]):
+                row_input = input(
+                    f"One or more values was not a digit from 0 to 9. Please try again.\n{row_name} Row: "
+                )
+                row_list = list(map(int, row_input.split(" ")))
 
-    #         else:
-    #             sudoku_input.append(row_list)
-
-    sudoku_input = [
-        [
-            0,
-            3,
-            0,
-            0,
-            1,
-            2,
-            0,
-            5,
-            0,
-        ],
-        [
-            0,
-            7,
-            0,
-            0,
-            0,
-            0,
-            8,
-            0,
-            0,
-        ],
-        [
-            8,
-            0,
-            0,
-            0,
-            3,
-            0,
-            0,
-            0,
-            4,
-        ],
-        [
-            0,
-            8,
-            4,
-            0,
-            0,
-            0,
-            0,
-            0,
-            6,
-        ],
-        [
-            0,
-            0,
-            0,
-            9,
-            5,
-            0,
-            0,
-            0,
-            0,
-        ],
-        [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            9,
-            7,
-            3,
-        ],
-        [
-            2,
-            0,
-            0,
-            6,
-            0,
-            0,
-            4,
-            0,
-            7,
-        ],
-        [
-            0,
-            0,
-            0,
-            0,
-            0,
-            5,
-            0,
-            0,
-            1,
-        ],
-        [
-            1,
-            6,
-            9,
-            0,
-            0,
-            8,
-            0,
-            2,
-            0,
-        ],
-    ]
+            else:
+                sudoku_input.append(row_list)
 
     sudoku_dict = {}
     for row_index, row in enumerate(sudoku_input):
