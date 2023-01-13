@@ -13,9 +13,6 @@ class Grid:
     # create lists of all the digits in the corresponding row, column or box
     def rowList(self, row_index):
         row_keys = [(row_index, col_index) for col_index in range(9)]
-        # print(row_keys)
-        # row_list = [self.current_grid[key] for key in row_keys]
-        # print(row_list)
         return [self.current_grid[key][0] for key in row_keys]
 
     def colList(self, col_index):
@@ -72,53 +69,32 @@ class Grid:
         return 0
 
     def solve(self):
-        # print(self.current_grid)
-        # create a list of tuples
-        # indices = [
-        #     (row, col) for row in range(self.length) for col in range(self.length)
-        # ]
-        # # create a dictionary to see whether a particular square was in the starting grid
-        # fixed_dict = {
-        #     index: self.current_grid[index[0]][index[1]] != 0 for index in indices
-        # }
         current_square = 0
         current_digit = 0
         # iterate over all the indices
-        # print(self.length)
         while current_square != self.length:
             square_index = list(self.current_grid.keys())[current_square]
-            # print(current_square)
             # check if the square is fixed
-            # print(self.current_grid[square_index])
             if not self.current_grid[square_index][1]:
                 digit_added = False
                 # check if we can add a digit to the square
                 poss_digit = self.checkSquare(current_digit, square_index)
                 # if there is a possible digit add it to the grid
                 if poss_digit != 0:
-                    # print("poss_digit != 0")
                     digit_added = True
-                    # print(self.current_grid[square_index])
                     self.current_grid[square_index][0] = poss_digit
-                    # print(self.current_grid[square_index])
                     current_square += 1
                     current_digit = 0
                 # if we were not able to we have to backtrack
                 if not digit_added:
-                    # print("not digit_added")
                     # set the current square to 0 as it still needs to be solved
-                    # print(self.current_grid[square_index])
                     self.current_grid[square_index][0] = 0
-                    # print(self.current_grid[square_index])
-
                     # go back one index
                     current_square -= 1
                     # keep going back until we reach a square we can change
                     while self.current_grid[
                         list(self.current_grid.keys())[current_square]
                     ][1]:
-                        # print(list(self.current_grid.keys())[current_square])
-                        # print(current_square)
                         current_square -= 1
                     # start checking from this new square from digits after the current ones to avoid rechecking
                     new_square_index = list(self.current_grid.keys())[current_square]
